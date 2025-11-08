@@ -1,0 +1,25 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "modal-run"
+version = "0.1.0"
+description = "CLI tool to run deployed Modal functions"
+readme = "README.md"
+requires-python = ">=3.8"
+license = {text = "MIT"}
+authors = [
+    {name = "Nikita Demir"}
+]
+dependencies = [
+    "click>=8.0.0",
+    "modal>=0.0.1",
+]
+
+[project.scripts]
+modal-run = "modal_run.cli:cli"
+
+[project.urls]
+Homepage = "https://github.com/ndemir/modal-run"
+
