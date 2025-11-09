@@ -1,6 +1,6 @@
 # modal-run
 
-CLI tool to run deployed Modal functions remotely.
+Super simple tool to run deployed Modal functions from the CLI. 
 
 ## Installation
 
@@ -10,19 +10,17 @@ pip install modal-run
 
 ## Usage
 
-Run a Modal function using the format `app_name.function_name`:
-
 ```bash
-modal-run app_name.function_name
+modal-run my_app.my_function
 ```
 
-### Example
+This will call `modal.Function.from_name("my_app", "my_function").remote()` under the hood.
 
 ```bash
-modal-run my_app.process_data
+modal-run -d my_app.function_name --an-arg my_arg
 ```
 
-This will call `modal.Function.from_name("my_app", "process_data").remote()` under the hood.
+This will call `modal.Function.from_name("my_app", "function_name").spawn(an_arg: "ny_arg")` under the hood.
 
 ## Requirements
 
