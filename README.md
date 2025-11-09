@@ -1,6 +1,6 @@
 # modal-run
 
-Super simple tool to run deployed Modal functions from the CLI. 
+Simple tool to run deployed Modal functions from the CLI. 
 
 ## Installation
 
