@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "modal-run"
-version = "0.1.1"
+version = "0.1.2"
 description = "Simple CLI tool to run deployed Modal functions"
 readme = "README.md"
 requires-python = ">=3.8"
