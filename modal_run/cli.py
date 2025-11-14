@@ -15,16 +15,12 @@ def main(
     function_path: str = typer.Argument(
         ..., help="Modal function path in format app_name.function_name"
     ),
-    detach: bool = typer.Option(
-        False, "-d", "--detach", help="Run function in detached mode using spawn"
-    ),
 ):
-    """Run a Modal function remotely.
+    """Run a Modal function using spawn.
 
     Args:
         function_path: The function path in format app_name.function_name
         Additional kwargs can be passed as --key value (e.g., --data-str my_data_str)
-        detach: If True, use spawn() instead of remote() for detached execution
     """
     if "." not in function_path:
         typer.echo(
@@ -67,12 +63,8 @@ def main(
 
     try:
         func = Function.from_name(app_name, function_name)
-        if detach:
-            func.spawn(**kwargs) if kwargs else func.spawn()
-            typer.echo("Function spawned in detached mode")
-        else:
-            result = func.remote(**kwargs) if kwargs else func.remote()
-            typer.echo(result)
+        func.spawn(**kwargs) if kwargs else func.spawn()
+        typer.echo("Function spawned")
     except Exception as e:
         typer.echo(f"Error executing function: {e}", err=True)
         raise typer.Exit(1)

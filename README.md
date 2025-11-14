@@ -14,10 +14,10 @@ pip install modal-run
 modal-run my_app.my_function
 ```
 
-This will call `modal.Function.from_name("my_app", "my_function").remote()` under the hood.
+This will call `modal.Function.from_name("my_app", "my_function").spawn()` under the hood.
 
 ```bash
-modal-run -d my_app.function_name --an-arg my_arg
+modal-run my_app.function_name --an-arg my_arg
 ```
 
 This will call `modal.Function.from_name("my_app", "function_name").spawn(an_arg: "ny_arg")` under the hood.
