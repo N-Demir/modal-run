@@ -15,8 +15,11 @@ def main(
     function_path: str = typer.Argument(
         ..., help="Modal function path in format app_name.function_name"
     ),
+    detached: bool = typer.Option(
+        False, "-d", "--detached", help="Run in detached mode"
+    ),
 ):
-    """Run a Modal function using spawn.
+    """Run a Modal function.
 
     Args:
         function_path: The function path in format app_name.function_name
@@ -63,8 +66,12 @@ def main(
 
     try:
         func = Function.from_name(app_name, function_name)
-        func.spawn(**kwargs) if kwargs else func.spawn()
-        typer.echo("Function spawned")
+        if detached:
+            func.spawn(**kwargs) if kwargs else func.spawn()
+            typer.echo("Function spawned")
+        else:
+            result = func.remote(**kwargs) if kwargs else func.remote()
+            typer.echo(f"Function result: {result}")
     except Exception as e:
         typer.echo(f"Error executing function: {e}", err=True)
         raise typer.Exit(1)
